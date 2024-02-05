@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  postgresql:
+    image: postgres:12-alpine
+    ports:
+      - '3300:5432'
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=app
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=pass
+
+  nodejs-app:
+    image: node
+    working_dir: /app
+    volumes:
+      - ./artifacts/gate-simulator:/app
+    command: npm start
+    ports:
+      - "9999:9999"
