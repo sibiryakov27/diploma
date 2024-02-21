@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.9.6'
 }
 
 group 'ru.netology'
@@ -10,6 +11,14 @@ sourceCompatibility = 11
 // кодировка файлов (если используете русский язык в файлах)
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
+
+allure {
+    autoconfigure = true
+    version = '2.13.3'
+    useJUnit5 {
+        version = '2.13.3'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -25,7 +34,8 @@ dependencies {
     testImplementation 'mysql:mysql-connector-java:8.0.18'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'org.apache.logging.log4j:log4j-core:2.22.1'
-
+    testImplementation 'io.qameta.allure:allure-selenide:2.13.3'
+    testImplementation 'com.epam.reportportal:agent-java-junit5:5.2.1'
 
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'

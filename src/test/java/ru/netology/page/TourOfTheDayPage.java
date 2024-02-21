@@ -31,7 +31,7 @@ public class TourOfTheDayPage {
         buyButton.click();
     }
 
-    public void buyTourInCredit() {
+    public void buyTourOnCredit() {
         buyInCreditButton.click();
     }
 
@@ -43,6 +43,26 @@ public class TourOfTheDayPage {
         cvvInput.setValue(cvv);
 
         continueButton.click();
+    }
+
+    public void findCardNumberInputSub(String expectedText) {
+        cardNumberInput.$x("../..//span[@class=\"input__sub\"]").shouldHave(text(expectedText));
+    }
+
+    public void findCardMonthInputSub(String expectedText) {
+        monthInput.$x("../..//span[@class=\"input__sub\"]").shouldHave(text(expectedText));
+    }
+
+    public void findCardYearInputSub(String expectedText) {
+        yearInput.$x("../..//span[@class=\"input__sub\"]").shouldHave(text(expectedText));
+    }
+
+    public void findCardHolderInputInputSub(String expectedText) {
+        cardHolderInput.$x("../..//span[@class=\"input__sub\"]").shouldHave(text(expectedText));
+    }
+
+    public void findCvvInputInputSub(String expectedText) {
+        cvvInput.$x("../..//span[@class=\"input__sub\"]").shouldHave(text(expectedText));
     }
 
     public void findNotificationTitle(String expectedText) {

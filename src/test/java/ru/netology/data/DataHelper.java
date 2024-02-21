@@ -7,7 +7,10 @@ import lombok.Value;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class DataHelper {
 
@@ -15,7 +18,7 @@ public class DataHelper {
 
     public static CardInfo[] cards;
 
-    private static Faker faker = new Faker();
+    private static final Faker faker = new Faker();
 
     static {
         try {
@@ -30,10 +33,14 @@ public class DataHelper {
         return faker.name().firstName() + " " + faker.name().lastName();
     }
 
-    public static String generateValidCardNumber() {
-        String issuerIdentificationNumber = "4"; // Префикс для Visa карт
-        String accountNumber = faker.number().digits(15); // Генерация случайного числа длиной 15 цифр
-        String cardNumber = issuerIdentificationNumber + accountNumber;
+    public static String generateValidCardNumberNotFromArray() {
+        String cardNumber;
+        do {
+            cardNumber = "4" + faker.number().digits(15);
+        } while (Arrays.stream(cards).map(card -> card.number)
+                .collect(Collectors.toCollection(ArrayList::new))
+                .contains(cardNumber)
+        );
 
         return cardNumber;
     }
@@ -42,9 +49,8 @@ public class DataHelper {
         Random random = new Random();
         LocalDate currentDate = LocalDate.now();
         int randomDays = random.nextInt(365) + 1;
-        LocalDate futureDate = currentDate.plusDays(randomDays);
 
-        return futureDate;
+        return currentDate.plusDays(randomDays);
     }
 
     public static String generateValidCVV() {
