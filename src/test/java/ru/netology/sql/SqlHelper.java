@@ -20,16 +20,7 @@ public class SqlHelper {
     private static final String DB_PASS = "pass";
 
     private static final QueryRunner runner = new QueryRunner();
-    private static final Connection conn;
-
-    static {
-        try {
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-            logger.info("The connection to the DB is established [DB_URL = {}, DB_USER = {}, DB_PASS = {}]", DB_URL, DB_USER, DB_PASS);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    private static Connection conn;
 
     public static long countApprovedTransactions() {
         try {
@@ -58,6 +49,15 @@ public class SqlHelper {
     public static long countDeclinedCreditRequests() {
         try {
             return runner.query(conn, "SELECT COUNT(*) FROM credit_request_entity WHERE status = 'DECLINED'", new ScalarHandler<>());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void openConnection() {
+        try {
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            logger.info("The connection to the DB is established [DB_URL = {}, DB_USER = {}, DB_PASS = {}]", DB_URL, DB_USER, DB_PASS);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

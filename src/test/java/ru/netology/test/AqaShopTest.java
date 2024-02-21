@@ -29,6 +29,7 @@ public class AqaShopTest {
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
+        SqlHelper.openConnection();
     }
 
     @AfterAll
