@@ -5,10 +5,11 @@ import ru.netology.data.DataHelper;
 import ru.netology.sql.SqlHelper;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
+public class AqaShopPurchaseOnCreditTest extends AqaShopBaseTest {
 
     @Test
     void shouldSuccessfullyBuyTourOnCreditWithApprovedStatusCard() {
@@ -17,9 +18,9 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                DataHelper.getApprovedCard().getNumber(),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
         );
@@ -37,9 +38,9 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[1].getNumber(),
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                DataHelper.getDeclinedCard().getNumber(),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
         );
@@ -56,8 +57,8 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
                 DataHelper.generateValidCardNumberNotFromArray(),
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
         );
@@ -71,8 +72,8 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
                 "",
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
         );
@@ -84,9 +85,9 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
+                DataHelper.getApprovedCard().getNumber(),
                 "",
-                String.valueOf(date.getYear() % 100),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
         );
@@ -98,8 +99,8 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
-                String.format("%02d", date.getMonthValue()),
+                DataHelper.getApprovedCard().getNumber(),
+                date.format(DateTimeFormatter.ofPattern("MM")),
                 "",
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
@@ -112,9 +113,9 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                DataHelper.getApprovedCard().getNumber(),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 "",
                 DataHelper.generateValidCVV()
         );
@@ -126,9 +127,9 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                DataHelper.getApprovedCard().getNumber(),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 ""
         );
@@ -141,8 +142,8 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
                 "4444444",
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
         );
@@ -154,9 +155,9 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
+                DataHelper.getApprovedCard().getNumber(),
                 "1",
-                String.valueOf(date.getYear() % 100),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
         );
@@ -168,8 +169,8 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
-                String.format("%02d", date.getMonthValue()),
+                DataHelper.getApprovedCard().getNumber(),
+                date.format(DateTimeFormatter.ofPattern("MM")),
                 "1",
                 DataHelper.generateValidCardHolderName(),
                 DataHelper.generateValidCVV()
@@ -182,7 +183,7 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
+                DataHelper.getApprovedCard().getNumber(),
                 "02",
                 "22",
                 DataHelper.generateValidCardHolderName(),
@@ -196,9 +197,9 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                DataHelper.getApprovedCard().getNumber(),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 "123@#",
                 DataHelper.generateValidCVV()
         );
@@ -210,9 +211,9 @@ public class AqaShopPurchaseOnCreditTest extends AqaShopTest {
         tourOfTheDayPage.buyTourOnCredit();
         LocalDate date = DataHelper.generateFutureDate();
         tourOfTheDayPage.fillTheForm(
-                DataHelper.cards[0].getNumber(),
-                String.format("%02d", date.getMonthValue()),
-                String.valueOf(date.getYear() % 100),
+                DataHelper.getApprovedCard().getNumber(),
+                date.format(DateTimeFormatter.ofPattern("MM")),
+                date.format(DateTimeFormatter.ofPattern("yy")),
                 DataHelper.generateValidCardHolderName(),
                 "12"
         );

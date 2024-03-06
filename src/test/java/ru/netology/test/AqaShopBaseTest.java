@@ -15,11 +15,11 @@ import ru.netology.sql.SqlHelper;
 import static com.codeborne.selenide.Selenide.open;
 
 @ExtendWith(ReportPortalExtension.class)
-public class AqaShopTest {
+public class AqaShopBaseTest {
 
     TourOfTheDayPage tourOfTheDayPage;
 
-    final Logger logger = LogManager.getLogger(AqaShopTest.class);
+    final Logger logger = LogManager.getLogger(AqaShopBaseTest.class);
 
     @BeforeEach
     void setUp() {

@@ -12,7 +12,7 @@
 
 ## Процент успешных и не успешных тест-кейсов
 
-![image](https://github.com/sibiryakov27/diploma/assets/75639158/43f19c3d-507b-4dd5-a817-764d2469b03a)
+![image](https://github.com/sibiryakov27/diploma/assets/75639158/3383b799-c4d6-4ebb-96a6-2af2f8dd0d5e)
 
 ## Общие рекомендации
 

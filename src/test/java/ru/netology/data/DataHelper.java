@@ -16,7 +16,7 @@ public class DataHelper {
 
     private DataHelper() {}
 
-    public static CardInfo[] cards;
+    private static CardInfo[] cards;
 
     private static final Faker faker = new Faker();
 
@@ -27,6 +27,14 @@ public class DataHelper {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static CardInfo getApprovedCard() {
+        return cards[0];
+    }
+
+    public static CardInfo getDeclinedCard() {
+        return cards[1];
     }
 
     public static String generateValidCardHolderName() {

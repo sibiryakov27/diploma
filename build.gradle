@@ -27,8 +27,6 @@ repositories {
 dependencies {
     testImplementation 'com.google.code.gson:gson:2.10.1'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
-    testImplementation 'io.rest-assured:rest-assured:4.3.0'
-    testImplementation 'com.google.code.gson:gson:2.8.6'
     testImplementation 'com.github.javafaker:javafaker:1.0.1'
     testImplementation 'com.codeborne:selenide:6.17.1'
     testImplementation 'mysql:mysql-connector-java:8.0.18'
@@ -46,4 +44,7 @@ test {
     // в тестах, вызывая `gradlew test -Dselenide.headless=true` будем передавать этот параметр в JVM (где его подтянет Selenide)
     // свойство selenide.headless используется в проектах на основе Selenide
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+    systemProperty 'datasource.url', System.getProperty('datasource.url', "jdbc:mysql://localhost:3306/app")
+    systemProperty 'datasource.username', System.getProperty('datasource.username', "app")
+    systemProperty 'datasource.password', System.getProperty('datasource.password', "pass")
 }

@@ -15,9 +15,9 @@ public class SqlHelper {
 
     private static final Logger logger = LogManager.getLogger(SqlHelper.class);
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/app";
-    private static final String DB_USER = "app";
-    private static final String DB_PASS = "pass";
+    private static final String DB_URL = System.getProperty("datasource.url");
+    private static final String DB_USER = System.getProperty("datasource.username");
+    private static final String DB_PASS = System.getProperty("datasource.password");
 
     private static final QueryRunner runner = new QueryRunner();
     private static Connection conn;
